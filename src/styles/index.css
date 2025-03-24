@@ -4,4 +4,5 @@
 
 body {
   font-family: theme('fontFamily.sans');
+  background-color: theme('colors.primaryBg', #f5f5f5);
 }
