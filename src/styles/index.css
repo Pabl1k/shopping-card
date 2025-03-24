@@ -1,8 +1,6 @@
-@tailwind base;
-@tailwind components;
-@tailwind utilities;
+@import 'tailwindcss';
 
 body {
-  font-family: theme('fontFamily.sans');
-  background-color: theme('colors.primaryBg', #f5f5f5);
+  font-family: Roboto, sans-serif;
+  background-color: #f5f5f5;
 }
