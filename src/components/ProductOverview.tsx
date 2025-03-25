@@ -11,8 +11,8 @@ const ProductOverview = () => {
   const [open, setOpen] = useState(true);
 
   return (
-    <>
-      <div className="h-[52px] flex items-center justify-between border-b border-grey mb-2 sm:hidden">
+    <div className="max-w-[409px]">
+      <div className="h-[52px] flex items-center justify-between border-b border-grey mb-2 md:hidden">
         <div className="flex items-center cursor-pointer" onClick={() => setOpen(!open)}>
           <span className="mr-3">Order overview</span>
           <ArrowIcon
@@ -40,7 +40,7 @@ const ProductOverview = () => {
           <span className="font-medium">{PRICE}</span>
         </div>
       </div>
-    </>
+    </div>
   );
 };
 

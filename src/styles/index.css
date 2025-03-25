@@ -16,8 +16,8 @@
   --radius-input: 6px;
   --radius-button: 4px;
 
-  --text-main: 14px;
   --text-small: 12px;
+  --text-main: 14px;
   --text-large: 24px;
 
   --font-weight-normal: 400;
@@ -26,6 +26,7 @@
 
   --leading-small: 16px;
   --leading-normal: 20px;
+  --leading-button: 24px;
   --leading-large: 32px;
 
   --spacing-1: 4px;
