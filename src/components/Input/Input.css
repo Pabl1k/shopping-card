@@ -15,8 +15,8 @@
 
 .inputGroup label {
   position: absolute;
-  top: 0;
-  padding: 12px;
+  left: 0;
+  padding: 16px;
   pointer-events: none;
   transition: all 0.3s ease;
   color: #828282;
@@ -25,6 +25,7 @@
 .inputGroup :is(input:focus, input:valid) ~ label {
   transform: translateY(-15%) scale(0.8);
   line-height: 14px;
+  padding-left: 8px;
 }
 
 .inputGroup :is(input:focus, input:valid) {
