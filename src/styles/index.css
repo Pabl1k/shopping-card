@@ -1,6 +1,40 @@
+@layer theme;
+
 @import 'tailwindcss';
+@import 'tailwindcss/theme.css' layer(theme);
+
+@theme {
+  --color-text: #333333;
+  --color-text-grey: #828282;
+  --color-text-dark-grey: #5c5c5c;
+  --color-background-main: #f5f5f5;
+  --color-background-white: #ffffff;
+  --color-background-blue: #3362ab;
+  --color-border: #e0e0e0;
+  --color-button: #009900;
+
+  --radius-input: 6px;
+  --radius-button: 4px;
+
+  --text-main: 14px;
+  --text-small: 12px;
+  --text-large: 24px;
+
+  --font-weight-normal: 400;
+  --font-weight-medium: 500;
+  --font-weight-bold: 700;
+
+  --leading-small: 16px;
+  --leading-normal: 20px;
+  --leading-large: 32px;
+}
 
 body {
   font-family: Roboto, sans-serif;
-  background-color: #f5f5f5;
+  font-size: var(--text-main);
+  font-weight: var(--font-weight-normal);
+  line-height: var(--leading-normal);
+  letter-spacing: normal;
+  background-color: var(--color-background-main);
+  color: var(--color-text);
 }
