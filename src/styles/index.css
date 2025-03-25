@@ -6,10 +6,10 @@
 @theme {
   --color-text: #333333;
   --color-text-grey: #828282;
-  --color-text-dark-grey: #5c5c5c;
   --color-background-main: #f5f5f5;
   --color-background-white: #ffffff;
   --color-background-blue: #3362ab;
+  --color-background-dark-grey: #5c5c5c;
   --color-border: #e0e0e0;
   --color-button: #009900;
 
