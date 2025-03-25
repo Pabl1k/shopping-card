@@ -31,7 +31,7 @@ const ProductOverview = () => {
           <div className="flex items-center">
             <div className="relative">
               <img src={orderPic} alt="Order" className="size-[64px] rounded-sm" />
-              <span className="absolute top-0 right-0 transform translate-x-1/2 -translate-y-1/2 bg-background-dark-grey text-white text-xs font-bold h-[21px] w-[21px] flex items-center justify-center rounded-full">
+              <span className="absolute top-0 right-0 transform translate-x-1/2 -translate-y-1/2 bg-background-dark-grey text-white text-xs font-bold size-[21px] flex items-center justify-center rounded-full">
                 {PRODUCT_COUNT}
               </span>
             </div>

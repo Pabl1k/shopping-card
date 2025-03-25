@@ -7,11 +7,11 @@ import Button from './components/Button.tsx';
 
 const App = () => {
   return (
-    <div className="flex max-md:flex-col px-[10vw] mb-4">
+    <div className="flex max-md:flex-col px-[10vw] py-4">
       <div className="md:hidden max-md:mb-4">
         <ProductOverview />
       </div>
-      <div className="flex flex-col w-full">
+      <div className="flex flex-col w-full bg-background-white px-4 pb-4">
         <Wrapper title="Contact">
           <Input label="Email Address" value="" />
         </Wrapper>

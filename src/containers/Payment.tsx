@@ -8,7 +8,7 @@ interface Props {
 
 const Payment: FC<Props> = () => {
   return (
-    <Wrapper title="Delivery">
+    <Wrapper title="Payment">
       <span className="text-small text-text-grey">All transactions are secure and encrypted.</span>
       <div className="flex flex-col gap-3">
         <Input label="Card number" value="" />

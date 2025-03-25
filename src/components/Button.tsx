@@ -7,7 +7,10 @@ interface Props {
 
 const Button: FC<Props> = ({ label, onClick }) => {
   return (
-    <button className="h-[48px] rounded-button bg-button cursor-pointer" onClick={onClick}>
+    <button
+      className="h-[48px] rounded-button bg-button cursor-pointer hover:bg-button-hover"
+      onClick={onClick}
+    >
       <span className="uppercase text-white font-bold leading-button">{label}</span>
     </button>
   );
