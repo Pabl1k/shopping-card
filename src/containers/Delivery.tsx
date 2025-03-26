@@ -5,23 +5,8 @@ import Wrapper from '../components/Wrapper.tsx';
 interface Props {
   onChange?: () => void;
 }
-//
-// interface Item {
-//   name: string;
-//   label: string;
-//   size: 'full' | 'half' | 'third';
-// }
 
 const Delivery: FC<Props> = () => {
-  // const items: Item[] = [
-  //   { name: 'firstName', label: 'First Name', size: 'half' },
-  //   { name: 'lastName', label: 'Last Name', size: 'half' },
-  //   { name: 'city', label: 'City', size: 'third' },
-  //   { name: 'province', label: 'State / Province', size: 'half' },
-  //   { name: 'zip', label: 'ZIP / Postal Code', size: 'half' },
-  //   { name: 'country', label: 'Country', size: 'full' }
-  // ];
-
   return (
     <Wrapper title="Delivery">
       <div className="flex flex-col gap-3">
@@ -29,8 +14,9 @@ const Delivery: FC<Props> = () => {
           <Input label="First Name" value="" />
           <Input label="Last Name" value="" />
         </div>
+        <Input className="md:hidden" label="City" value="" />
         <div className="flex w-full gap-3">
-          <Input label="City" value="" />
+          <Input className="max-md:hidden" label="City" value="" />
           <Input label="State / Province" value="" />
           <Input label="ZIP / Postal Code" value="" />
         </div>
