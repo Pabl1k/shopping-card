@@ -4,10 +4,12 @@ import Input from './components/Input/Input.tsx';
 import Delivery from './containers/Delivery.tsx';
 import Payment from './containers/Payment.tsx';
 import Button from './components/Button.tsx';
+import InfoText from './components/InfoText.tsx';
 
 const App = () => {
   return (
     <div className="flex max-md:flex-col md:px-[10vw] md:pt-4 pb-4">
+      {/* TODO logo */}
       <div className="md:hidden">
         <ProductOverview />
       </div>
@@ -21,6 +23,8 @@ const App = () => {
         <Payment />
 
         <Button label="Complete order" />
+
+        <InfoText />
       </div>
       <div className="max-md:hidden w-full pt-[40px] pl-[38px]">
         <ProductOverview />
