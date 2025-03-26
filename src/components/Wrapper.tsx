@@ -9,7 +9,7 @@ interface Props {
 
 const Wrapper: FC<Props> = ({ title, description, children }) => {
   return (
-    <div className="bg-background-white flex flex-col py-3">
+    <div className="bg-background-white flex flex-col py-3 px-4">
       <span className={clsx(description ? 'mb-2' : 'mb-3', 'text-large font-bold leading-large')}>
         {title}
       </span>

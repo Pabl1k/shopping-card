@@ -25,10 +25,10 @@ const ProductOverview = () => {
       <div
         className={clsx(
           open ? 'max-h-40 opacity-100' : 'max-h-0 opacity-0',
-          'overflow-hidden transition-all duration-300'
+          'overflow-hidden transition-all duration-300  border-b border-border'
         )}
       >
-        <div className="max-md:px-4 mt-4 mb-3 pb-3 flex items-center justify-between border-b border-border">
+        <div className="max-md:px-4 mt-4 mb-3 pb-3 flex items-center justify-between">
           <div className="flex items-center">
             <div className="relative">
               <img src={productPicture} alt="Product" className="size-[64px] rounded-sm" />

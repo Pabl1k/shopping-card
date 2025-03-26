@@ -3,8 +3,6 @@ import Wrapper from './components/Wrapper.tsx';
 import Input from './components/Input/Input.tsx';
 import Delivery from './containers/Delivery.tsx';
 import Payment from './containers/Payment.tsx';
-import Button from './components/Button.tsx';
-import InfoText from './components/InfoText.tsx';
 import Benefits from './components/Benefits.tsx';
 
 const App = () => {
@@ -15,7 +13,7 @@ const App = () => {
         <ProductOverview />
       </div>
       <div>
-        <div className="flex flex-col w-full bg-background-white px-4 pb-4">
+        <div className="flex flex-col gap-3">
           <Wrapper title="Contact">
             <Input label="Email Address" value="" />
           </Wrapper>
@@ -23,10 +21,6 @@ const App = () => {
           <Delivery />
 
           <Payment />
-
-          <Button label="Complete order" />
-
-          <InfoText />
         </div>
 
         <Benefits />
