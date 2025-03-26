@@ -14,6 +14,7 @@ const Delivery: FC<Props> = () => {
           <Input label="First Name" value="" />
           <Input label="Last Name" value="" />
         </div>
+        <Input label="Address" value="" />
         <Input className="md:hidden" label="City" value="" />
         <div className="flex w-full gap-3">
           <Input className="max-md:hidden" label="City" value="" />
