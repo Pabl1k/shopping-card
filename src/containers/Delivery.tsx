@@ -1,15 +1,47 @@
-import { FC } from 'react';
+import { FC, useEffect, useState } from 'react';
 import Input from '../components/Input/Input.tsx';
 import Wrapper from '../components/Wrapper.tsx';
 import { DeliveryState } from '../App.tsx';
+import Dropdown from '../components/Dropdown.tsx';
 
 interface Props {
   deliveryState: DeliveryState;
   onChange: (field: keyof DeliveryState, value: string) => void;
 }
 
+const provinces = [
+  'Alberta',
+  'Guangdong',
+  'Bavaria',
+  'La Rioja',
+  'KwaZulu-Natal',
+  'Sindh',
+  'Mendoza',
+  'Nagano',
+  'Tamil Nadu',
+  'Oaxaca'
+];
+
+const mapDtoToCountryName = (dto: { name: { common: string } }): string => dto.name.common;
+
 const Delivery: FC<Props> = ({ deliveryState, onChange }) => {
   const { firstName, lastName, address, city, province, zip, country } = deliveryState;
+  const [countries, setCountries] = useState<string[]>([]);
+
+  useEffect(() => {
+    const fetchCountries = async () => {
+      try {
+        const res = await fetch('https://restcountries.com/v3.1/region/europe');
+        const json = await res.json();
+        const list: string[] = json.map(mapDtoToCountryName).sort();
+        setCountries(list);
+      } catch (error) {
+        console.error('Failed to fetch country', error);
+      }
+    };
+
+    fetchCountries();
+  }, []);
 
   return (
     <Wrapper title="Delivery">
@@ -40,10 +72,11 @@ const Delivery: FC<Props> = ({ deliveryState, onChange }) => {
             value={city}
             onChange={(value) => onChange('city', value)}
           />
-          <Input
+          <Dropdown
             label="State / Province"
             value={province}
-            onChange={(value) => onChange('province', value)}
+            options={provinces}
+            onSelect={(value) => onChange('province', value)}
           />
           <Input
             label="ZIP / Postal Code"
@@ -51,7 +84,15 @@ const Delivery: FC<Props> = ({ deliveryState, onChange }) => {
             onChange={(value) => onChange('zip', value)}
           />
         </div>
-        <Input label="Country" value={country} onChange={(value) => onChange('country', value)} />
+        <Dropdown
+          label="Country"
+          value={country}
+          options={countries}
+          onSelect={(value) => {
+            onChange('country', value);
+            onChange('province', '');
+          }}
+        />
       </div>
     </Wrapper>
   );

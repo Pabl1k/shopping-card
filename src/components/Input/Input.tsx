@@ -5,7 +5,7 @@ interface Props {
   className?: string;
   label: string;
   value: string;
-  onChange: (value: string) => void;
+  onChange?: (value: string) => void;
 }
 
 const Input: FC<Props> = ({ className, label, value, onChange }) => {
@@ -15,7 +15,7 @@ const Input: FC<Props> = ({ className, label, value, onChange }) => {
         value={value}
         className="w-full h-full rounded-input border border-border p-3 leading-normal outline-none focus:border-border-hover placeholder:text-text-grey"
         placeholder={label}
-        onChange={(e) => onChange(e.target.value)}
+        onChange={(e) => onChange?.(e.target.value)}
       />
     </div>
   );
