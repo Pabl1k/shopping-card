@@ -1,6 +1,6 @@
 import { FC, useRef, useState } from 'react';
 import clsx from 'clsx';
-import { useOutsideClick } from '../common/useOutsideClick.ts';
+import { useOutsideClick } from '../hooks/useOutsideClick.ts';
 import { ReactComponent as ArrowIcon } from '../assets/icons/arrow.svg';
 import Input from './Input.tsx';
 

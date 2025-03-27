@@ -5,7 +5,7 @@ import Delivery from './containers/Delivery.tsx';
 import Payment from './containers/Payment.tsx';
 import Benefits from './containers/Benefits.tsx';
 import Header from './containers/Header.tsx';
-import { useDataManagement } from './useDataManagement.ts';
+import { useDataManagement } from './hooks/useDataManagement.ts';
 
 const App = () => {
   const {

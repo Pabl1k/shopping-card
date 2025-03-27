@@ -7,7 +7,7 @@ import { ReactComponent as Amex } from '../assets/icons/amex.svg';
 import { ReactComponent as Diners } from '../assets/icons/diners.svg';
 import Button from '../components/Button.tsx';
 import InfoText from '../components/InfoText.tsx';
-import { Fields, PaymentState } from '../model.ts';
+import { Fields, PaymentState } from '../hooks/model.ts';
 
 interface Props {
   paymentState: PaymentState;

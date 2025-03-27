@@ -3,7 +3,7 @@ import Input from '../components/Input.tsx';
 import Wrapper from '../components/Wrapper.tsx';
 import Dropdown from '../components/Dropdown.tsx';
 import { Countries } from '../assets/countries.ts';
-import { DeliveryState, Fields } from '../model.ts';
+import { DeliveryState, Fields } from '../hooks/model.ts';
 
 interface Props {
   deliveryState: DeliveryState;
