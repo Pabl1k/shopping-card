@@ -9,11 +9,17 @@ interface Props {
   deliveryState: DeliveryState;
   errors: DeliveryState;
   validateField: (field: Fields) => Promise<void>;
-  setError: (field: Fields, reset?: boolean) => void;
+  setRequiredFieldError: (field: Fields, reset?: boolean) => void;
   onChange: (field: keyof DeliveryState, value: string) => void;
 }
 
-const Delivery: FC<Props> = ({ deliveryState, errors, validateField, setError, onChange }) => {
+const Delivery: FC<Props> = ({
+  deliveryState,
+  errors,
+  validateField,
+  setRequiredFieldError,
+  onChange
+}) => {
   const { firstName, lastName, address, city, province, zip, country } = deliveryState;
   const countries = Object.keys(Countries).sort();
   const provinces = Countries[country] ? Countries[country].sort() : [];
@@ -29,8 +35,8 @@ const Delivery: FC<Props> = ({ deliveryState, errors, validateField, setError, o
   const handleCountrySelect = (value: string) => {
     onChange('country', value);
     handleReset('province');
-    setError('country', true);
-    setError('province');
+    setRequiredFieldError('country', true);
+    setRequiredFieldError('province');
   };
 
   return (
@@ -85,11 +91,11 @@ const Delivery: FC<Props> = ({ deliveryState, errors, validateField, setError, o
             onBlur={() => validateField('province')}
             onSelect={(value) => {
               onChange('province', value);
-              setError('province', true);
+              setRequiredFieldError('province', true);
             }}
             onReset={() => {
               handleReset('province');
-              setError('province');
+              setRequiredFieldError('province');
             }}
           />
           <Input
@@ -109,7 +115,7 @@ const Delivery: FC<Props> = ({ deliveryState, errors, validateField, setError, o
           onSelect={handleCountrySelect}
           onReset={() => {
             handleReset('country');
-            setError('country');
+            setRequiredFieldError('country');
           }}
         />
       </div>

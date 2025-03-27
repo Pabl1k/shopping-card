@@ -43,14 +43,13 @@ export const useDataValidation = (state: CustomerInformation) => {
     }));
   };
 
-  const setError = (field: Fields, reset = false) => {
+  const setRequiredFieldError = (field: Fields, reset = false) => {
     if (reset) {
       handleErrorSet(field, '');
       return;
     }
 
-    const message = field === 'country' ? 'Country is required' : 'Province is required';
-    handleErrorSet(field, message);
+    handleErrorSet(field, errorMapper.fieldRequired);
   };
 
   const validateField = async (field: Fields) => {
@@ -86,7 +85,7 @@ export const useDataValidation = (state: CustomerInformation) => {
   return {
     errors,
     validateField,
-    setError,
+    setRequiredFieldError,
     submitValidate
   };
 };

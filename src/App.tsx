@@ -12,28 +12,14 @@ const App = () => {
     emailState,
     deliveryState,
     paymentState,
-    errors,
+    emailError,
+    deliveryErrors,
+    paymentErrors,
     handleChange,
     validateField,
-    setError,
+    setRequiredFieldError,
     save
   } = useDataManagement();
-
-  const deliveryErrors = {
-    firstName: errors.firstName,
-    lastName: errors.lastName,
-    address: errors.address,
-    city: errors.city,
-    province: errors.province,
-    zip: errors.zip,
-    country: errors.country
-  };
-  const paymentErrors = {
-    cardNumber: errors.cardNumber,
-    expiration: errors.expiration,
-    securityCode: errors.securityCode,
-    nameOnCard: errors.nameOnCard
-  };
 
   return (
     <>
@@ -50,7 +36,7 @@ const App = () => {
               <Input
                 label="Email Address"
                 value={emailState}
-                error={errors.email}
+                error={emailError}
                 onBlur={() => validateField('email')}
                 onChange={(value) => handleChange('email', value)}
               />
@@ -60,7 +46,7 @@ const App = () => {
               deliveryState={deliveryState}
               errors={deliveryErrors}
               validateField={validateField}
-              setError={setError}
+              setRequiredFieldError={setRequiredFieldError}
               onChange={handleChange}
             />
 

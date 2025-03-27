@@ -12,7 +12,7 @@ const CACHE_KEY = 'customerInformation';
 
 export const useDataManagement = () => {
   const [state, setState] = useState<CustomerInformation>(initialState);
-  const { errors, validateField, setError, submitValidate } = useDataValidation(state);
+  const { errors, validateField, setRequiredFieldError, submitValidate } = useDataValidation(state);
 
   const deliveryState: Record<DeliveryFields, string> = {
     firstName: state.firstName,
@@ -28,6 +28,22 @@ export const useDataManagement = () => {
     expiration: state.expiration,
     securityCode: state.securityCode,
     nameOnCard: state.nameOnCard
+  };
+
+  const deliveryErrors = {
+    firstName: errors.firstName,
+    lastName: errors.lastName,
+    address: errors.address,
+    city: errors.city,
+    province: errors.province,
+    zip: errors.zip,
+    country: errors.country
+  };
+  const paymentErrors = {
+    cardNumber: errors.cardNumber,
+    expiration: errors.expiration,
+    securityCode: errors.securityCode,
+    nameOnCard: errors.nameOnCard
   };
 
   const handleChange = (field: Fields, value: string) => {
@@ -52,9 +68,11 @@ export const useDataManagement = () => {
     emailState: state.email,
     deliveryState,
     paymentState,
-    errors,
+    emailError: errors.email,
+    deliveryErrors,
+    paymentErrors,
     validateField,
-    setError,
+    setRequiredFieldError,
     handleChange,
     save
   };
