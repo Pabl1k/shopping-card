@@ -1,47 +1,27 @@
-import { FC, useEffect, useState } from 'react';
+import { FC } from 'react';
 import Input from '../components/Input/Input.tsx';
 import Wrapper from '../components/Wrapper.tsx';
 import { DeliveryState } from '../App.tsx';
 import Dropdown from '../components/Dropdown.tsx';
+import { Countries } from '../assets/countries.ts';
 
 interface Props {
   deliveryState: DeliveryState;
   onChange: (field: keyof DeliveryState, value: string) => void;
 }
 
-const provinces = [
-  'Alberta',
-  'Guangdong',
-  'Bavaria',
-  'La Rioja',
-  'KwaZulu-Natal',
-  'Sindh',
-  'Mendoza',
-  'Nagano',
-  'Tamil Nadu',
-  'Oaxaca'
-];
-
-const mapDtoToCountryName = (dto: { name: { common: string } }): string => dto.name.common;
-
 const Delivery: FC<Props> = ({ deliveryState, onChange }) => {
   const { firstName, lastName, address, city, province, zip, country } = deliveryState;
-  const [countries, setCountries] = useState<string[]>([]);
+  const countries = Object.keys(Countries).sort();
+  const provinces = Countries[country] ? Countries[country].sort() : [];
 
-  useEffect(() => {
-    const fetchCountries = async () => {
-      try {
-        const res = await fetch('https://restcountries.com/v3.1/region/europe');
-        const json = await res.json();
-        const list: string[] = json.map(mapDtoToCountryName).sort();
-        setCountries(list);
-      } catch (error) {
-        console.error('Failed to fetch country', error);
-      }
-    };
+  const handleReset = (field: 'country' | 'province') => {
+    if (field === 'country') {
+      onChange('province', '');
+    }
 
-    fetchCountries();
-  }, []);
+    onChange(field, '');
+  };
 
   return (
     <Wrapper title="Delivery">
@@ -76,7 +56,9 @@ const Delivery: FC<Props> = ({ deliveryState, onChange }) => {
             label="State / Province"
             value={province}
             options={provinces}
+            disabled={!country}
             onSelect={(value) => onChange('province', value)}
+            onReset={() => handleReset('province')}
           />
           <Input
             label="ZIP / Postal Code"
@@ -90,8 +72,9 @@ const Delivery: FC<Props> = ({ deliveryState, onChange }) => {
           options={countries}
           onSelect={(value) => {
             onChange('country', value);
-            onChange('province', '');
+            handleReset('province');
           }}
+          onReset={() => handleReset('country')}
         />
       </div>
     </Wrapper>
