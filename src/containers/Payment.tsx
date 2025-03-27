@@ -19,20 +19,17 @@ interface Props {
 
 const paymentMethods = [<Visa />, <MasterCard />, <Amex />, <Diners />];
 
-const cardNumberRegex = /\s/g;
-const expirationRegex = /(\d{2})(\d{2})/;
-const cardNumberLimit = 16;
-const securityCodeExpirationLimit = 4;
+const CARD_NUMBER_LIMIT = 16;
+const SECURITY_CODE_LIMIT = 4;
 
 const Payment: FC<Props> = ({ paymentState, errors, validateField, onChange, onSave }) => {
   const { cardNumber, expiration, securityCode, nameOnCard } = paymentState;
   const formattedCardNumber = cardNumber.replace(/(\d{4})(?=\d)/g, '$1 ');
-  const formattedExpiration = expiration.replace(/(\d{2})(?=\d)/g, '$1/');
 
   const handleNumberFields = (field: 'cardNumber' | 'securityCode', value: string) => {
     const digits = value.replace(/\D/g, '');
-    const regexValue = field === 'cardNumber' ? digits.replace(cardNumberRegex, '') : digits;
-    const limit = field === 'cardNumber' ? cardNumberLimit : securityCodeExpirationLimit;
+    const regexValue = field === 'cardNumber' ? digits.replace(/\s/g, '') : digits;
+    const limit = field === 'cardNumber' ? CARD_NUMBER_LIMIT : SECURITY_CODE_LIMIT;
 
     if (regexValue.length > limit) {
       return;
@@ -42,13 +39,8 @@ const Payment: FC<Props> = ({ paymentState, errors, validateField, onChange, onS
   };
 
   const handleExpirationField = (value: string) => {
-    const digits = value.replace(/\D/g, '');
-    if (digits.length > securityCodeExpirationLimit) {
-      return;
-    }
-
-    const result = digits.replace(expirationRegex, '$1/$2');
-    onChange('expiration', result);
+    const allowedSymbols = value.replace(/[^0-9/]/g, '');
+    onChange('expiration', allowedSymbols);
   };
 
   return (
@@ -76,7 +68,7 @@ const Payment: FC<Props> = ({ paymentState, errors, validateField, onChange, onS
           <div className="flex gap-3">
             <Input
               label="Expiration (MM/YY)"
-              value={formattedExpiration}
+              value={expiration}
               error={errors.expiration}
               onBlur={() => validateField('expiration')}
               onChange={handleExpirationField}
