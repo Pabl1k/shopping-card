@@ -1,5 +1,5 @@
 import { FC } from 'react';
-import Input from '../components/Input/Input.tsx';
+import Input from '../components/Input.tsx';
 import Wrapper from '../components/Wrapper.tsx';
 import Dropdown from '../components/Dropdown.tsx';
 import { Countries } from '../assets/countries.ts';

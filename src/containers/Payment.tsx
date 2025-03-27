@@ -1,5 +1,5 @@
 import { FC } from 'react';
-import Input from '../components/Input/Input.tsx';
+import Input from '../components/Input.tsx';
 import Wrapper from '../components/Wrapper.tsx';
 import { ReactComponent as Visa } from '../assets/icons/visa.svg';
 import { ReactComponent as MasterCard } from '../assets/icons/mastercard.svg';

@@ -1,6 +1,6 @@
 import ProductOverview from './containers/ProductOverview.tsx';
 import Wrapper from './components/Wrapper.tsx';
-import Input from './components/Input/Input.tsx';
+import Input from './components/Input.tsx';
 import Delivery from './containers/Delivery.tsx';
 import Payment from './containers/Payment.tsx';
 import Benefits from './containers/Benefits.tsx';

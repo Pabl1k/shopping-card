@@ -1,8 +1,8 @@
 import { FC, useRef, useState } from 'react';
-import Input from './Input/Input.tsx';
+import clsx from 'clsx';
 import { useOutsideClick } from '../common/useOutsideClick.ts';
 import { ReactComponent as ArrowIcon } from '../assets/icons/arrow.svg';
-import clsx from 'clsx';
+import Input from './Input.tsx';
 
 interface Props {
   label: string;
