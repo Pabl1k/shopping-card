@@ -37,6 +37,7 @@ const App = () => {
                 label="Email Address"
                 value={emailState}
                 error={emailError}
+                inputMode="email"
                 onBlur={() => validateField('email')}
                 onChange={(value) => handleChange('email', value)}
               />

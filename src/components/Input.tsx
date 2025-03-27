@@ -8,6 +8,7 @@ interface Props {
   error?: string;
   disabled?: boolean;
   prefix?: ReactNode;
+  inputMode?: 'text' | 'email' | 'numeric';
   onBlur?: () => void;
   onChange?: (value: string) => void;
 }
@@ -19,6 +20,7 @@ const Input: FC<Props> = ({
   error,
   disabled,
   prefix,
+  inputMode = 'text',
   onBlur,
   onChange
 }) => {
@@ -31,6 +33,8 @@ const Input: FC<Props> = ({
         )}
       >
         <input
+          type="text"
+          inputMode={inputMode}
           value={value}
           className={clsx(disabled && ' cursor-not-allowed', 'h-full w-full p-3 outline-none')}
           placeholder={label}

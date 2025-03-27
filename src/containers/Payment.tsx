@@ -62,6 +62,7 @@ const Payment: FC<Props> = ({ paymentState, errors, validateField, onChange, onS
             label="Card number"
             value={formattedCardNumber}
             error={errors.cardNumber}
+            inputMode="numeric"
             onBlur={() => validateField('cardNumber')}
             onChange={(value) => handleNumberFields('cardNumber', value)}
           />
@@ -70,6 +71,7 @@ const Payment: FC<Props> = ({ paymentState, errors, validateField, onChange, onS
               label="Expiration (MM/YY)"
               value={expiration}
               error={errors.expiration}
+              inputMode="numeric"
               onBlur={() => validateField('expiration')}
               onChange={handleExpirationField}
             />
@@ -77,6 +79,7 @@ const Payment: FC<Props> = ({ paymentState, errors, validateField, onChange, onS
               label="Security code"
               value={securityCode}
               error={errors.securityCode}
+              inputMode="numeric"
               onBlur={() => validateField('securityCode')}
               onChange={(value) => handleNumberFields('securityCode', value)}
             />
