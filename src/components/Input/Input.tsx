@@ -5,12 +5,23 @@ interface Props {
   className?: string;
   label: string;
   value: string;
+  error?: string;
   disabled?: boolean;
   prefix?: ReactNode;
+  onBlur?: () => void;
   onChange?: (value: string) => void;
 }
 
-const Input: FC<Props> = ({ className, label, value, disabled, prefix, onChange }) => {
+const Input: FC<Props> = ({
+  className,
+  label,
+  value,
+  error,
+  disabled,
+  prefix,
+  onBlur,
+  onChange
+}) => {
   return (
     <div className={clsx(className, 'relative w-full')}>
       <div
@@ -24,10 +35,12 @@ const Input: FC<Props> = ({ className, label, value, disabled, prefix, onChange 
           className="h-full w-full p-3 outline-none"
           placeholder={label}
           disabled={disabled}
+          onBlur={onBlur}
           onChange={(e) => onChange?.(e.target.value)}
         />
         {prefix}
       </div>
+      {error && <div className="text-error text-small">{error}</div>}
     </div>
   );
 };

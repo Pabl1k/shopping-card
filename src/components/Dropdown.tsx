@@ -8,12 +8,23 @@ interface Props {
   label: string;
   value: string;
   options: string[];
+  error?: string;
   disabled?: boolean;
+  onBlur?: () => void;
   onSelect: (value: string) => void;
   onReset: () => void;
 }
 
-const Dropdown: FC<Props> = ({ label, value, options, disabled = false, onSelect, onReset }) => {
+const Dropdown: FC<Props> = ({
+  label,
+  value,
+  options,
+  error,
+  disabled = false,
+  onBlur,
+  onSelect,
+  onReset
+}) => {
   const [open, setOpen] = useState(false);
 
   const ref = useRef<HTMLDivElement>(null);
@@ -48,7 +59,7 @@ const Dropdown: FC<Props> = ({ label, value, options, disabled = false, onSelect
   };
 
   return (
-    <div ref={ref} className="relative w-full">
+    <div ref={ref} className="relative w-full" onBlur={onBlur}>
       <div onClick={() => setOpen(true)}>
         <Input label={label} value={value} disabled={disabled} prefix={renderPrefix()} />
       </div>
@@ -66,6 +77,7 @@ const Dropdown: FC<Props> = ({ label, value, options, disabled = false, onSelect
           ))}
         </div>
       )}
+      {error && <div className="text-error text-small">{error}</div>}
     </div>
   );
 };

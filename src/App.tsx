@@ -8,7 +8,32 @@ import Header from './containers/Header.tsx';
 import { useDataManagement } from './useDataManagement.ts';
 
 const App = () => {
-  const { emailState, deliveryState, paymentState, handleChange } = useDataManagement();
+  const {
+    emailState,
+    deliveryState,
+    paymentState,
+    errors,
+    handleChange,
+    validateField,
+    setError,
+    save
+  } = useDataManagement();
+
+  const deliveryErrors = {
+    firstName: errors.firstName,
+    lastName: errors.lastName,
+    address: errors.address,
+    city: errors.city,
+    province: errors.province,
+    zip: errors.zip,
+    country: errors.country
+  };
+  const paymentErrors = {
+    cardNumber: errors.cardNumber,
+    expiration: errors.expiration,
+    securityCode: errors.securityCode,
+    nameOnCard: errors.nameOnCard
+  };
 
   return (
     <>
@@ -25,13 +50,27 @@ const App = () => {
               <Input
                 label="Email Address"
                 value={emailState}
+                error={errors.email}
+                onBlur={() => validateField('email')}
                 onChange={(value) => handleChange('email', value)}
               />
             </Wrapper>
 
-            <Delivery deliveryState={deliveryState} onChange={handleChange} />
+            <Delivery
+              deliveryState={deliveryState}
+              errors={deliveryErrors}
+              validateField={validateField}
+              setError={setError}
+              onChange={handleChange}
+            />
 
-            <Payment paymentState={paymentState} onChange={handleChange} />
+            <Payment
+              paymentState={paymentState}
+              errors={paymentErrors}
+              validateField={validateField}
+              onChange={handleChange}
+              onSave={save}
+            />
           </div>
 
           <Benefits />

@@ -1,23 +1,16 @@
 import { useState } from 'react';
-import { CustomerInformation, DeliveryFields, Fields, PaymentFields } from './model.ts';
-
-const initialState: CustomerInformation = {
-  email: '',
-  firstName: '',
-  lastName: '',
-  address: '',
-  city: '',
-  province: '',
-  zip: '',
-  country: '',
-  cardNumber: '',
-  expiration: '',
-  securityCode: '',
-  nameOnCard: ''
-};
+import {
+  CustomerInformation,
+  DeliveryFields,
+  Fields,
+  initialState,
+  PaymentFields
+} from './model.ts';
+import { useDataValidation } from './useDataValidation.ts';
 
 export const useDataManagement = () => {
   const [state, setState] = useState<CustomerInformation>(initialState);
+  const { errors, validateField, setError } = useDataValidation(state);
 
   const deliveryState: Record<DeliveryFields, string> = {
     firstName: state.firstName,
@@ -42,10 +35,18 @@ export const useDataManagement = () => {
     }));
   };
 
+  const save = async () => {
+    console.log(state);
+  };
+
   return {
     emailState: state.email,
     deliveryState,
     paymentState,
-    handleChange
+    errors,
+    validateField,
+    setError,
+    handleChange,
+    save
   };
 };
