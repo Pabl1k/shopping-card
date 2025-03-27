@@ -36,11 +36,11 @@ const Dropdown: FC<Props> = ({
 
   useOutsideClick(ref, () => setOpen(false));
 
-  const renderPrefix = () => {
+  const renderIcon = () => {
     if (value) {
       return (
         <button
-          className="mr-3 cursor-pointer size-[20px]"
+          className="mr-3 cursor-pointer size-[20px] text-text-grey"
           onClick={(e) => {
             e.stopPropagation();
             onReset();
@@ -61,15 +61,15 @@ const Dropdown: FC<Props> = ({
   return (
     <div ref={ref} className="relative w-full" onBlur={onBlur}>
       <div onClick={() => setOpen(true)}>
-        <Input label={label} value={value} disabled={disabled} prefix={renderPrefix()} />
+        <Input label={label} value={value} disabled={disabled} prefix={renderIcon()} />
       </div>
       {open && (
-        <div className="absolute max-h-[200px] w-full flex flex-col divide-y divide-border border-solid border  border-border-hover rounded-b-input overflow-y-auto">
+        <div className="absolute max-h-[200px] w-full flex flex-col divide-y divide-border border-solid border z-10 border-border-hover rounded-b-input overflow-y-auto">
           {options.map((option) => (
             <div
               key={option}
               title={option}
-              className="min-h-[42px] flex items-center cursor-pointer px-2 bg-background-white truncate z-10 last:rounded-bl-input last:rounded-br-input"
+              className="min-h-[42px] flex items-center cursor-pointer px-2 bg-background-white truncate last:rounded-bl-input last:rounded-br-input"
               onClick={() => handleSelect(option)}
             >
               {option}
