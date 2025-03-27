@@ -27,7 +27,7 @@ const Input: FC<Props> = ({
       <div
         className={clsx(
           disabled && 'bg-border',
-          'flex justify-between items-center rounded-input border border-border leading-normal focus:border-border-hover placeholder:text-text-grey'
+          'flex justify-between items-center rounded-input bg-background-white border border-border leading-normal focus:border-border-hover placeholder:text-text-grey'
         )}
       >
         <input
