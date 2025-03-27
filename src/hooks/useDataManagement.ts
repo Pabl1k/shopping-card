@@ -8,7 +8,7 @@ import {
 } from './model.ts';
 import { useDataValidation } from './useDataValidation.ts';
 
-const CACHE_KEY = 'customerInformation';
+const CACHE_KEY = 'cc-order-information';
 
 export const useDataManagement = () => {
   const [state, setState] = useState<CustomerInformation>(initialState);
@@ -60,7 +60,11 @@ export const useDataManagement = () => {
       return;
     }
 
-    localStorage.setItem(CACHE_KEY, JSON.stringify(state));
+    const trimmedState = Object.fromEntries(
+      Object.entries(state).map(([key, value]) => [key, value.trim()])
+    );
+
+    localStorage.setItem(CACHE_KEY, JSON.stringify(trimmedState));
     setState(initialState);
   };
 
