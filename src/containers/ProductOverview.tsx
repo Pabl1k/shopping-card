@@ -38,7 +38,7 @@ const ProductOverview = () => {
                 {PRODUCT_COUNT}
               </span>
             </div>
-            <span className="font-bold ml-4">{PRODUCT_NAME}</span>
+            <span className="font-bold mx-4 text-nowrap">{PRODUCT_NAME}</span>
           </div>
           <span className="font-medium">{PRICE}</span>
         </div>

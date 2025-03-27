@@ -1,6 +1,6 @@
-type Country = {
+interface Country {
   [key: string]: string[];
-};
+}
 
 export const Countries: Country = {
   'United States': [
