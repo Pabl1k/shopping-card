@@ -7,7 +7,7 @@ import { ReactComponent as Amex } from '../assets/icons/amex.svg';
 import { ReactComponent as Diners } from '../assets/icons/diners.svg';
 import Button from '../components/Button.tsx';
 import InfoText from '../components/InfoText.tsx';
-import { Fields, PaymentFields, PaymentState } from '../model.ts';
+import { Fields, PaymentState } from '../model.ts';
 
 interface Props {
   paymentState: PaymentState;
@@ -17,15 +17,38 @@ interface Props {
   onSave: () => void;
 }
 
+const paymentMethods = [<Visa />, <MasterCard />, <Amex />, <Diners />];
+
+const cardNumberRegex = /\s/g;
+const expirationRegex = /(\d{2})(\d{2})/;
+const cardNumberLimit = 16;
+const securityCodeExpirationLimit = 4;
+
 const Payment: FC<Props> = ({ paymentState, errors, validateField, onChange, onSave }) => {
   const { cardNumber, expiration, securityCode, nameOnCard } = paymentState;
+  const formattedCardNumber = cardNumber.replace(/(\d{4})(?=\d)/g, '$1 ');
+  const formattedExpiration = expiration.replace(/(\d{2})(?=\d)/g, '$1/');
 
-  const paymentMethods = [<Visa />, <MasterCard />, <Amex />, <Diners />];
+  const handleNumberFields = (field: 'cardNumber' | 'securityCode', value: string) => {
+    const digits = value.replace(/\D/g, '');
+    const regexValue = field === 'cardNumber' ? digits.replace(cardNumberRegex, '') : digits;
+    const limit = field === 'cardNumber' ? cardNumberLimit : securityCodeExpirationLimit;
 
-  const handleNumberField = (field: PaymentFields, value: string) => {
-    const numbers = value.replace(/\D/g, '');
+    if (regexValue.length > limit) {
+      return;
+    }
 
-    onChange(field, numbers);
+    onChange(field, regexValue);
+  };
+
+  const handleExpirationField = (value: string) => {
+    const digits = value.replace(/\D/g, '');
+    if (digits.length > securityCodeExpirationLimit) {
+      return;
+    }
+
+    const result = digits.replace(expirationRegex, '$1/$2');
+    onChange('expiration', result);
   };
 
   return (
@@ -45,25 +68,25 @@ const Payment: FC<Props> = ({ paymentState, errors, validateField, onChange, onS
         <div className="flex flex-col p-3 gap-3 bg-background-light-grey">
           <Input
             label="Card number"
-            value={cardNumber}
+            value={formattedCardNumber}
             error={errors.cardNumber}
             onBlur={() => validateField('cardNumber')}
-            onChange={(value) => handleNumberField('cardNumber', value)}
+            onChange={(value) => handleNumberFields('cardNumber', value)}
           />
           <div className="flex gap-3">
             <Input
               label="Expiration (MM/YY)"
-              value={expiration}
+              value={formattedExpiration}
               error={errors.expiration}
               onBlur={() => validateField('expiration')}
-              onChange={(value) => handleNumberField('expiration', value)}
+              onChange={handleExpirationField}
             />
             <Input
               label="Security code"
               value={securityCode}
               error={errors.securityCode}
               onBlur={() => validateField('securityCode')}
-              onChange={(value) => handleNumberField('securityCode', value)}
+              onChange={(value) => handleNumberFields('securityCode', value)}
             />
           </div>
           <Input
