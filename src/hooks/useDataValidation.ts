@@ -4,28 +4,36 @@ import { useState } from 'react';
 
 type Errors = Record<Fields, string>;
 
+const errorMapper = {
+  fieldRequired: 'This field is required',
+  invalidEmail: 'Invalid email format',
+  creditCardNumber: 'Credit card number must be exactly 16 digits',
+  expirationDate: 'Expiration date must be in MM/YY format',
+  securityCode: 'Security code must be 3 or 4 digits'
+} as const;
+
 export const useDataValidation = (state: CustomerInformation) => {
   const [errors, setErrors] = useState<Errors>(initialState);
 
   const validationSchema: ObjectSchema<CustomerInformation> = object().shape({
-    email: string().email('Invalid email format').required('Email is required'),
-    firstName: string().required('First name is required'),
-    lastName: string().required('Last name is required'),
-    address: string().required('Address is required'),
-    city: string().required('City is required'),
-    province: string().required('Province is required'),
-    zip: string().required('Zip code is required'),
-    country: string().required('Country is required'),
+    email: string().email(errorMapper.invalidEmail).required(errorMapper.fieldRequired),
+    firstName: string().required(errorMapper.fieldRequired),
+    lastName: string().required(errorMapper.fieldRequired),
+    address: string().required(errorMapper.fieldRequired),
+    city: string().required(errorMapper.fieldRequired),
+    province: string().required(errorMapper.fieldRequired),
+    zip: string().required(errorMapper.fieldRequired),
+    country: string().required(errorMapper.fieldRequired),
     cardNumber: string()
-      .matches(/^\d{16}$/, 'Credit card number must be exactly 16 digits')
-      .required('Card number is required'),
+      .matches(/^\d{16}$/, errorMapper.creditCardNumber)
+      .required(errorMapper.fieldRequired),
     expiration: string()
-      .matches(/^(0[1-9]|1[0-2])\/\d{2}$/, 'Expiration date must be in MM/YY format')
-      .required('Expiration date is required'),
+      .matches(/^(0[1-9]|1[0-2])\/\d{2}$/, errorMapper.expirationDate)
+      .required(errorMapper.fieldRequired),
     securityCode: string()
-      .matches(/^\d{3,4}$/, 'Security code must be 3 or 4 digits')
-      .required('Security code is required'),
-    nameOnCard: string().required('Name on card is required')
+      .matches(/^\d{3,4}$/, errorMapper.securityCode)
+      .required(errorMapper.fieldRequired),
+    nameOnCard: string().required(errorMapper.fieldRequired)
   });
 
   const handleErrorSet = (field: Fields, message: string) => {
