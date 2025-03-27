@@ -2,7 +2,7 @@ import { FC } from 'react';
 
 interface Props {
   label: string;
-  onClick?: () => void;
+  onClick: () => void;
 }
 
 const Button: FC<Props> = ({ label, onClick }) => {

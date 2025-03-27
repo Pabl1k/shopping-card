@@ -26,7 +26,6 @@ const Dropdown: FC<Props> = ({
   onReset
 }) => {
   const [open, setOpen] = useState(false);
-
   const ref = useRef<HTMLDivElement>(null);
 
   const handleSelect = (value: string) => {

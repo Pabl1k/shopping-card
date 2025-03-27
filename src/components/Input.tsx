@@ -32,7 +32,7 @@ const Input: FC<Props> = ({
       >
         <input
           value={value}
-          className="h-full w-full p-3 outline-none"
+          className={clsx(disabled && ' cursor-not-allowed', 'h-full w-full p-3 outline-none')}
           placeholder={label}
           disabled={disabled}
           onBlur={onBlur}

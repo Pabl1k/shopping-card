@@ -5,7 +5,7 @@ import { useState } from 'react';
 type Errors = Record<Fields, string>;
 
 const errorMapper = {
-  fieldRequired: 'This field is required',
+  fieldRequired: 'Field is required',
   invalidEmail: 'Invalid email format',
   creditCardNumber: 'Credit card number must be exactly 16 digits',
   expirationDate: 'Expiration date must be in MM/YY format',
