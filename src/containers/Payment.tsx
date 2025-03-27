@@ -71,7 +71,6 @@ const Payment: FC<Props> = ({ paymentState, errors, validateField, onChange, onS
               label="Expiration (MM/YY)"
               value={expiration}
               error={errors.expiration}
-              inputMode="numeric"
               onBlur={() => validateField('expiration')}
               onChange={handleExpirationField}
             />
