@@ -8,9 +8,11 @@ import {
 } from './model.ts';
 import { useDataValidation } from './useDataValidation.ts';
 
+const CACHE_KEY = 'customerInformation';
+
 export const useDataManagement = () => {
   const [state, setState] = useState<CustomerInformation>(initialState);
-  const { errors, validateField, setError } = useDataValidation(state);
+  const { errors, validateField, setError, submitValidate } = useDataValidation(state);
 
   const deliveryState: Record<DeliveryFields, string> = {
     firstName: state.firstName,
@@ -36,7 +38,14 @@ export const useDataManagement = () => {
   };
 
   const save = async () => {
-    console.log(state);
+    const valid = await submitValidate();
+
+    if (!valid) {
+      return;
+    }
+
+    localStorage.setItem(CACHE_KEY, JSON.stringify(state));
+    setState(initialState);
   };
 
   return {

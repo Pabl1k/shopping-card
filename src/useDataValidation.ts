@@ -58,9 +58,27 @@ export const useDataValidation = (state: CustomerInformation) => {
     }
   };
 
+  const submitValidate = async () => {
+    try {
+      await validationSchema.validate(state, { abortEarly: false });
+      return true;
+    } catch (errors) {
+      if (errors instanceof ValidationError) {
+        for (const error of errors.inner) {
+          handleErrorSet(error.path as Fields, error.message);
+        }
+      } else {
+        console.error('Unexpected error occurred:', errors);
+      }
+
+      return false;
+    }
+  };
+
   return {
     errors,
     validateField,
-    setError
+    setError,
+    submitValidate
   };
 };
