@@ -31,7 +31,9 @@ const ProductOverview = () => {
         <div className="max-md:px-4 mt-4 mb-3 pb-3 flex items-center justify-between">
           <div className="flex items-center">
             <div className="relative">
-              <img src={productPicture} alt="Product" className="size-[64px] rounded-sm" />
+              <div className="size-[64px]">
+                <img src={productPicture} alt="Product" className="rounded-button" />
+              </div>
               <span className="absolute top-0 right-0 transform translate-x-1/2 -translate-y-1/2 bg-background-dark-grey text-white text-xs font-bold size-[21px] flex items-center justify-center rounded-full">
                 {PRODUCT_COUNT}
               </span>
