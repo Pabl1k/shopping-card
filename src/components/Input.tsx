@@ -7,7 +7,7 @@ interface Props {
   value: string;
   error?: string;
   disabled?: boolean;
-  prefix?: ReactNode;
+  suffix?: ReactNode;
   inputMode?: 'text' | 'email' | 'numeric';
   onBlur?: () => void;
   onChange?: (value: string) => void;
@@ -19,7 +19,7 @@ const Input: FC<Props> = ({
   value,
   error,
   disabled,
-  prefix,
+  suffix,
   inputMode = 'text',
   onBlur,
   onChange
@@ -29,7 +29,7 @@ const Input: FC<Props> = ({
       <div
         className={clsx(
           disabled && 'bg-border',
-          'flex justify-between items-center rounded-input bg-background-white border border-border leading-normal focus:border-border-hover placeholder:text-text-grey'
+          'flex justify-between items-center rounded-input bg-background-white border border-border leading-normal focus-within:border-border-hover hover:border-border-hover placeholder:text-text-grey'
         )}
       >
         <input
@@ -42,7 +42,7 @@ const Input: FC<Props> = ({
           onBlur={onBlur}
           onChange={(e) => onChange?.(e.target.value)}
         />
-        {prefix}
+        {suffix}
       </div>
       {error && <div className="text-error text-small">{error}</div>}
     </div>

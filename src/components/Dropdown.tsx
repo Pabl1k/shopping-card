@@ -60,7 +60,7 @@ const Dropdown: FC<Props> = ({
   return (
     <div ref={ref} className="relative w-full" onBlur={onBlur}>
       <div onClick={() => setOpen(true)}>
-        <Input label={label} value={value} disabled={disabled} prefix={renderIcon()} />
+        <Input label={label} value={value} disabled={disabled} suffix={renderIcon()} />
       </div>
       {open && (
         <div className="absolute max-h-[200px] w-full flex flex-col divide-y divide-border border-solid border z-10 border-border-hover rounded-b-input overflow-y-auto">
