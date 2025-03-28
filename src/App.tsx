@@ -25,11 +25,7 @@ const App = () => {
     <>
       <Header />
 
-      <div className="flex max-md:flex-col md:px-[10vw] md:pt-4 pb-4">
-        <div className="md:hidden">
-          <ProductOverview />
-        </div>
-
+      <div className="flex max-md:flex-col-reverse md:px-[10vw] md:pt-4 pb-4">
         <div>
           <div className="flex flex-col gap-3">
             <Wrapper title="Contact">
@@ -63,7 +59,7 @@ const App = () => {
           <Benefits />
         </div>
 
-        <div className="max-md:hidden w-full pl-[38px]">
+        <div className="md:w-full md:pl-[38px]">
           <ProductOverview />
         </div>
       </div>

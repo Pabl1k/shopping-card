@@ -13,10 +13,10 @@ const ProductOverview = () => {
   return (
     <>
       <div
-        className="h-[52px] flex items-center justify-between border-b border-border md:hidden max-md:px-4"
+        className="h-[52px] flex items-center justify-between border-b border-border md:hidden max-md:px-4 cursor-pointer"
         onClick={() => setOpen(!open)}
       >
-        <div className="flex items-center cursor-pointer">
+        <div className="flex items-center">
           <span className="mr-3">Order overview</span>
           <ArrowIcon className={clsx(!open && 'rotate-180', 'transform transition-transform')} />
         </div>
